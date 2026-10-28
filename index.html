@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kitnet no Centro | UniLar</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <header class="topbar" id="inicio">
+    <a class="brand" href="#"><img src="images/logo.png" alt="UniLar"></a>
+    <nav>
+      <a class="active" href="#inicio">Início</a>
+      <a href="#imoveis">Imóveis</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#duvidas">Dúvidas</a>
+    </nav>
+    <div class="top-actions">
+    <button class="profile" id="profileBtn" aria-label="Perfil" type="button">
+      <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+        <circle cx="12" cy="8" r="4" />
+        <path d="M5 21a7 7 0 0 1 14 0" />
+      </svg>
+    </button></div>
+  </header>
+
+  <main class="layout">
+    <section class="left-column" id="imoveis">
+      <div class="gallery card">
+        <div class="hero-photo">
+          <img id="mainPhoto" src="images/apartamento-1.jpg" alt="Sala de apartamento mobiliado">
+          <button class="photo-arrow prev" id="prevPhoto" aria-label="Foto anterior" type="button">‹</button>
+          <button class="photo-arrow next" id="nextPhoto" aria-label="Próxima foto" type="button">›</button>
+          <span class="counter" id="photoCounter">1/5</span>
+        </div>
+        <div class="thumbnails">
+          <img class="selected" src="images/apartamento-1.jpg" data-full="images/apartamento-1.jpg" alt="Sala de apartamento mobiliado" tabindex="0">
+          <img src="images/apartamento-2.jpg" data-full="images/apartamento-2.jpg" alt="Sala clara com plantas e sofá" tabindex="0">
+          <img src="images/apartamento-3.jpg" data-full="images/apartamento-3.jpg" alt="Sala integrada com cozinha" tabindex="0">
+          <img src="images/apartamento-4.jpg" data-full="images/apartamento-4.jpg" alt="Sala com escada e sofá azul" tabindex="0">
+          <img src="images/apartamento-5.jpg" data-full="images/apartamento-5.jpg" alt="Sala de jantar integrada" tabindex="0">
+          <button id="morePhotos" type="button">+7</button>
+        </div>
+        <div class="description">
+          <h3>Descrição</h3>
+          <p>Kitnet mobiliada, ideal para estudantes. Ambiente aconchegante, com cama, armário, cozinha completa e banheiro privativo. Localização privilegiada, próxima à universidade, ao mercado e ao ponto de ônibus.</p>
+        </div>
+        <div class="amenities">
+          <h3>Comodidades</h3>
+          <div class="amenity-grid">
+            <span>▱ Mobiliado</span><span>⌁ Wi-Fi</span><span>▣ Geladeira</span>
+            <span>♨ Fogão</span><span>❄ Ar-condicionado</span><span>☼ Área de lazer</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="middle-column">
+      <article class="property-info card">
+        <div class="tags"><span>✓ Verificado</span><span>♧ Perto da UFV</span><span>▰ Mobiliado</span><button class="heart" id="favoriteBtn" type="button" aria-label="Favoritar imóvel" title="Favoritar imóvel">♡</button></div>
+        <h1>Kitnet no Centro</h1>
+        <p class="location">⌖ Rio Paranaíba - MG</p>
+        <div class="price">R$ 750/mês</div>
+        <div class="facts"><span>▱ 1 quarto</span><span>▱ 1 banheiro</span><span>□ 20 m²</span></div>
+        <button class="primary" id="contactBtn" type="button">✉ Entrar em contato</button>
+        <button class="secondary" id="scheduleBtn" type="button">▦ Agendar visita</button>
+      </article>
+      <div class="map-card"><img src="images/mapa.png" alt="Mapa da localização do imóvel"></div>
+    </section>
+
+    <aside class="right-column" id="sobre">
+      <div class="owner">
+        <h4>Sobre o proprietário</h4>
+        <div class="owner-person"><img src="images/proprietario.png" alt=""><div><strong>João Vitor Leite Silva</strong><span>Proprietário</span></div></div>
+        <p>♧ Membro desde 2023</p><p>◷ Responde em até 2 horas</p>
+        <button class="owner-button" id="ownerListingsBtn" type="button">Ver mais imóveis</button>
+      </div>
+      <div class="why" id="duvidas">
+        <h2>Por que escolher esse imóvel?</h2>
+        <div class="reason"><span>🎓</span><p><strong>Próximo à UFV</strong><br>Ideal para estudantes</p></div>
+        <div class="reason"><span>🛒</span><p><strong>Praticidade no dia a dia</strong><br>Mercado e serviços próximos</p></div>
+        <div class="reason"><span>🚌</span><p><strong>Facilidade de transportes</strong><br>Ponto de ônibus nas proximidades</p></div>
+        <div class="reason"><span>🛏</span><p><strong>Conforto e praticidade</strong><br>Imóvel mobiliado e pronto para morar</p></div>
+      </div>
+    </aside>
+  </main>
+
+  <div class="modal-backdrop" id="modalBackdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" type="button" aria-label="Fechar">×</button>
+      <h2 id="modalTitle">Detalhes</h2>
+      <div id="modalBody"></div>
+    </section>
+  </div>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <script>
+    const $ = (selector) => document.querySelector(selector);
+    const modalBackdrop = $("#modalBackdrop");
+    const modalTitle = $("#modalTitle");
+    const modalBody = $("#modalBody");
+    const toast = $("#toast");
+    let toastTimer;
+
+    function showToast(message) {
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2800);
+    }
+
+    function openModal(title, bodyHtml) {
+      modalTitle.textContent = title;
+      modalBody.innerHTML = bodyHtml;
+      modalBackdrop.hidden = false;
+      document.body.classList.add("modal-open");
+      $("#modalClose").focus();
+    }
+
+    function closeModal() {
+      modalBackdrop.hidden = true;
+      document.body.classList.remove("modal-open");
+    }
+
+    $("#modalClose").addEventListener("click", closeModal);
+    modalBackdrop.addEventListener("click", (event) => {
+      if (event.target === modalBackdrop) closeModal();
+    });
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape" && !modalBackdrop.hidden) closeModal();
+    });
+
+    // Galeria: setas e miniaturas alteram a imagem em destaque.
+    const mainPhoto = $("#mainPhoto");
+    const thumbnails = Array.from(document.querySelectorAll(".thumbnails img"));
+    const counter = $("#photoCounter");
+    let currentPhoto = 0;
+    function showPhoto(index) {
+      currentPhoto = (index + thumbnails.length) % thumbnails.length;
+      const thumb = thumbnails[currentPhoto];
+      mainPhoto.src = thumb.dataset.full;
+      mainPhoto.alt = thumb.alt;
+      thumbnails.forEach((item, i) => item.classList.toggle("selected", i === currentPhoto));
+      counter.textContent = `${currentPhoto + 1}/${thumbnails.length}`;
+    }
+    thumbnails.forEach((thumb, index) => {
+      thumb.addEventListener("click", () => showPhoto(index));
+      thumb.addEventListener("keydown", (event) => {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          showPhoto(index);
+        }
+      });
+    });
+    $("#prevPhoto").addEventListener("click", () => showPhoto(currentPhoto - 1));
+    $("#nextPhoto").addEventListener("click", () => showPhoto(currentPhoto + 1));
+    $("#morePhotos").addEventListener("click", () => {
+      openModal("Fotos do imóvel", `
+        <p>Estas são as ${thumbnails.length} imagens disponíveis nesta demonstração.</p>
+        <div class="modal-gallery">${thumbnails.map((t, i) => `<button type="button" class="modal-thumb" data-index="${i}"><img src="${t.dataset.full}" alt="${t.alt}"><span>Foto ${i + 1}</span></button>`).join("")}</div>
+        <p class="form-note">Para exibir as outras 7 fotos da referência, adicione os arquivos de imagem correspondentes à pasta <code>images</code>.</p>
+      `);
+      document.querySelectorAll(".modal-thumb").forEach(btn => btn.addEventListener("click", () => {
+        showPhoto(Number(btn.dataset.index));
+        closeModal();
+      }));
+    });
+
+    // Favoritar / desfavoritar.
+    $("#favoriteBtn").addEventListener("click", () => {
+      const btn = $("#favoriteBtn");
+      const saved = btn.classList.toggle("is-favorite");
+      btn.textContent = saved ? "♥" : "♡";
+      btn.setAttribute("aria-label", saved ? "Remover dos favoritos" : "Favoritar imóvel");
+      showToast(saved ? "Imóvel adicionado aos favoritos." : "Imóvel removido dos favoritos.");
+    });
+
+    // Formulário de contato: demonstração local, sem envio para servidor.
+    $("#contactBtn").addEventListener("click", () => {
+      openModal("Entrar em contato", `
+        <p class="modal-intro">Envie uma mensagem para João Vitor sobre a Kitnet no Centro.</p>
+        <form id="contactForm" class="modal-form">
+          <label>Seu nome<input name="name" required placeholder="Digite seu nome"></label>
+          <label>Seu e-mail<input name="email" type="email" required placeholder="voce@email.com"></label>
+          <label>Mensagem<textarea name="message" required rows="3">Olá! Tenho interesse na kitnet de R$ 750/mês. O imóvel ainda está disponível?</textarea></label>
+          <button class="primary" type="submit">Preparar mensagem</button>
+        </form>
+        <p class="form-note">Demonstração: os dados não são enviados para um proprietário real.</p>
+      `);
+      $("#contactForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        const subject = encodeURIComponent("Interesse na Kitnet no Centro");
+        const body = encodeURIComponent(`Nome: ${data.get("name")}\\nE-mail: ${data.get("email")}\\n\\n${data.get("message")}`);
+        showToast("Mensagem preparada. Conecte um e-mail para enviá-la de verdade.");
+        openModal("Mensagem pronta", `<p>Seu texto foi preparado. Para enviar de verdade, integre este formulário a um serviço de e-mail ou backend.</p><textarea rows="6" readonly>${`Nome: ${data.get("name")}\\nE-mail: ${data.get("email")}\\n\\n${data.get("message")}`}</textarea><button type="button" class="primary" id="copyMessage">Copiar mensagem</button>`);
+        $("#copyMessage").addEventListener("click", async () => {
+          const text = $("#modalBody textarea").value;
+          try { await navigator.clipboard.writeText(text); showToast("Mensagem copiada."); }
+          catch { showToast("Selecione e copie o texto manualmente."); }
+        });
+      });
+    });
+
+    // Agendamento com validação de data e horário.
+    $("#scheduleBtn").addEventListener("click", () => {
+      const today = new Date();
+      const minDate = `${today.getFullYear()}-${String(today.getMonth()+1).padStart(2,"0")}-${String(today.getDate()).padStart(2,"0")}`;
+      openModal("Agendar visita", `
+        <p class="modal-intro">Escolha uma data e um horário de preferência.</p>
+        <form id="scheduleForm" class="modal-form">
+          <label>Data<input name="date" type="date" min="${minDate}" required></label>
+          <label>Horário<select name="time" required><option value="">Selecione</option><option>09:00</option><option>10:00</option><option>11:00</option><option>14:00</option><option>15:00</option><option>16:00</option><option>17:00</option></select></label>
+          <label>Observação<textarea name="note" rows="2" placeholder="Alguma informação adicional?"></textarea></label>
+          <button class="primary" type="submit">Solicitar visita</button>
+        </form>
+        <p class="form-note">A solicitação é demonstrativa e ainda não chega ao proprietário.</p>
+      `);
+      $("#scheduleForm").addEventListener("submit", (event) => {
+        event.preventDefault();
+        const data = new FormData(event.currentTarget);
+        const date = data.get("date").split("-").reverse().join("/");
+        openModal("Solicitação registrada", `<p>Você selecionou uma visita para <strong>${date}</strong>, às <strong>${data.get("time")}</strong>.</p><p class="form-note">Esta é uma confirmação local de demonstração. Para confirmar a visita com o proprietário, é necessário integrar um backend.</p><button class="primary" id="finishSchedule" type="button">Concluir</button>`);
+        $("#finishSchedule").addEventListener("click", closeModal);
+      });
+    });
+
+    // Botão de perfil.
+    $("#profileBtn").addEventListener("click", () => openModal("Minha conta", `
+      <div class="profile-menu">
+        <p><strong>Visitante UniLar</strong></p>
+        <button type="button" class="secondary" id="myFavorites">Meus favoritos</button>
+        <button type="button" class="secondary" id="myVisits">Minhas visitas</button>
+        <p class="form-note">A conta é ilustrativa; login e dados salvos precisam de backend.</p>
+      </div>
+    `));
+    document.addEventListener("click", (event) => {
+      if (event.target.id === "myFavorites") {
+        const fav = $("#favoriteBtn").classList.contains("is-favorite");
+        openModal("Meus favoritos", fav ? `<p>Kitnet no Centro — R$ 750/mês</p>` : `<p>Você ainda não favoritou nenhum imóvel.</p>`);
+      }
+      if (event.target.id === "myVisits") {
+        openModal("Minhas visitas", `<p>Nenhuma visita salva nesta demonstração. Use “Agendar visita” para preencher uma solicitação.</p>`);
+      }
+    });
+    $("#ownerListingsBtn").addEventListener("click", () => {
+      openModal("Imóveis de João Vitor", `
+        <div class="listing-mini"><img src="images/apartamento-1.jpg" alt="Kitnet no Centro"><div><strong>Kitnet no Centro</strong><p>Rio Paranaíba - MG</p><b>R$ 750/mês</b></div></div>
+        <p class="form-note">Este é o único imóvel cadastrado nesta demonstração.</p>
+      `);
+    });
+
+    // Navegação da página: links funcionam como âncoras.
+    document.querySelectorAll("nav a").forEach(link => link.addEventListener("click", () => {
+      document.querySelectorAll("nav a").forEach(item => item.classList.remove("active"));
+      link.classList.add("active");
+    }));
+  </script>
+</body>
+</html>
